@@ -1,32 +1,31 @@
 import connection from './connection';
 
-// Get all products
 const getAll = async () => {
   const [products] = await connection.execute('SELECT * FROM products');
   return products;
 };
 
-const getById = async (id) => {
-  const [[product]] = await connection.execute('SELECT * FROM products WHERE id = ?', [id]);
+const getByCode = async (code) => {
+  const [[product]] = await connection.execute('SELECT * FROM products WHERE code = ?', [code]);
   return product;
 };
 
-// const create = async (name) => {
-//   const [{ insertId }] = await connection.execute('INSERT INTO products (name) VALUES (?)', [name]);
-//   return insertId;
-// };
+const create = async ({name, code, description, price}) => {
+  const [{ insertId }] = await connection.execute('INSERT INTO products (name, code, description, price) VALUES (?, ?, ?, ?)', [name, code, description, price]);
+  return insertId;
+};
 
-// const update = async (id, name) => {
-//   await connection.execute('UPDATE products SET name = ? WHERE id = ?', [name, id]);
-//   const product = await getById(id);
-//   return product;
-// };
+const update = async ({name, code, description, price}) => {
+  await connection.execute('UPDATE products SET name = ?, SET description = ?, SET price = ? WHERE code = ?', [name, description, price, code]);
+  const product = await getByCode(code);
+  return product;
+};
 
-const exclude = async (id) => connection.execute('DELETE FROM products WHERE id = ?', [id]);
+const exclude = async (code) => connection.execute('DELETE FROM products WHERE code = ?', [code]);
 
 export default {
   getAll,
-  getById,
+  getByCode,
   create,
   update,
   exclude,
