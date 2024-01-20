@@ -54,3 +54,11 @@ const exclude = async (code) => {
   await productsModel.exclude(id);
   return { status: 'DELETED', data: null };
 };
+
+export default {
+  getAll,
+  getByCode,
+  create,
+  update,
+  exclude,
+};
