@@ -1,5 +1,5 @@
-import productService from '../services/product.service';
-import mapStatusHTTP from '../utils/mapStatusHTTP';
+import productService from '../services/product.service.js';
+import mapStatusHTTP from '../utils/mapStatusHTTP.js';
 
 const getAll = async (_req, res) => {
   const { status, data } = await productService.getAll();

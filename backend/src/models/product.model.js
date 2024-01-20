@@ -1,4 +1,4 @@
-import connection from './connection';
+import connection from './connection.js';
 
 const getAll = async () => {
   const [products] = await connection.execute('SELECT * FROM products');
