@@ -1,5 +1,6 @@
 {
   "name": "back-end",
+  "type": "module",
   "version": "1.0.0",
   "description": "Products Management Back-end",
   "author": "Leandro Sousa",
@@ -15,8 +16,8 @@
     "lint": "eslint --no-error-on-unmatched-pattern ."
   },
   "dependencies": {
-    "cors": "2.8.5",
     "express": "4.17.1",
+    "cors": "2.8.5",
     "express-async-errors": "3.1.1",
     "camelize": "^1.0.1",
     "joi": "17.6.0",

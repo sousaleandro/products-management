@@ -12,6 +12,13 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_HOSTNAME: db
       MYSQL_PORT: 3306
+    volumes:
+      - ./backend:/app/backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
   frontend:
     build: ./frontend
     container_name: frontend_container
@@ -28,3 +35,7 @@ services:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
