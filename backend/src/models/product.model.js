@@ -15,8 +15,8 @@ const create = async ({name, code, description, price}) => {
   return insertId;
 };
 
-const update = async ({name, code, description, price}) => {
-  await connection.execute('UPDATE products SET name = ?, SET description = ?, SET price = ? WHERE code = ?', [name, description, price, code]);
+const update = async (code, {name, description, price}) => {
+  await connection.execute('UPDATE products SET name = ?, description = ?, price = ? WHERE code = ?', [name, description, price, code]);
   const product = await getByCode(code);
   return product;
 };

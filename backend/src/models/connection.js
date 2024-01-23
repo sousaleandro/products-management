@@ -5,7 +5,7 @@ const connection = mysql.createPool({
   user: process.env.MYSQL_USER || 'root',
   port: process.env.MYSQL_PORT || 3306,
   password: process.env.MYSQL_PASSWORD || 'password',
-  // database: process.env.MYSQL_DATABASE || 'ProductManagement',
+  database: process.env.MYSQL_DATABASE || 'NunesSports',
 });
 
 connection.getConnection((err) => {

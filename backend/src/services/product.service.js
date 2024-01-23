@@ -1,4 +1,5 @@
 import productsModel from '../models/product.model.js';
+import { validateProduct, validateUpdateProduct } from './validations/validations.js';
 
 const getAll = async () => {
   const products = await productsModel.getAll();
@@ -6,52 +7,46 @@ const getAll = async () => {
 };
 
 const getByCode = async (code) => {
-  // const errorId = validateId(id);
-  // if (errorId) return { status: errorId.status, data: { message: 'Wrong id format' } };
   const product = await productsModel.getByCode(code);
   if (!product) return { status: 'NOT_FOUND', data: { message: 'Product not found' } };
   return { status: 'SUCCESSFUL', data: product };
 };
 
 const create = async (data) => {
-  // const error = validateProduct(name);
-  // if (error) {
-  // return {
-  //   status: error.status,
-  //   data: { message: '"name" length must be at least 5 characters long' },
-  // };
-  // }
+  const error = validateProduct(data);
+  if (error) {
+  return {
+    status: error.status,
+    data: error.data.message,
+  };
+  }
 
-  const productId = await productsModel.create(data);
+  await productsModel.create(data);
   const product = await productsModel.getByCode(data.code);
   return { status: 'CREATED', data: product };
 };
 
-const update = async (data) => {
-  // const errorId = validateId(id);
-  // if (errorId) return { status: errorId.status, data: { message: 'Wrong id format' } };
-  // const error = validateProduct(name);
-  // if (error) {
-  //   return {
-  //     status: error.status,
-  //     data: { message: '"name" length must be at least 5 characters long' },
-  //   };
-  // }
-
+const update = async (code, data) => {
   const product = await productsModel.getByCode(code);
   if (!product) return { status: 'NOT_FOUND', data: { message: 'Product not found' } };
+
+  const error = validateUpdateProduct(data);
+  if (error) {
+    return {
+      status: error.status,
+      data: error.data.message,
+    };
+  }
   
-  const updatedProduct = await productsModel.update(data);
+  const updatedProduct = await productsModel.update(code, data);
   return { status: 'SUCCESSFUL', data: updatedProduct };
 };
 
 const exclude = async (code) => {
-  // const errorId = validateId(id);
-  // if (errorId) return { status: errorId.status, data: { message: 'Wrong id format' } };
-  // const product = await productsModel.getById(id);
-  // if (!product) return { status: 'NOT_FOUND', data: { message: 'Product not found' } };
+  const product = await productsModel.getByCode(code);
+  if (!product) return { status: 'NOT_FOUND', data: { message: 'Product not found' } };
 
-  await productsModel.exclude(id);
+  await productsModel.exclude(code);
   return { status: 'DELETED', data: null };
 };
 

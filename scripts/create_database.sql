@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS NunesSports;
+USE NunesSports;
