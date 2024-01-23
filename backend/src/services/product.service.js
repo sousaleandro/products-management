@@ -15,10 +15,10 @@ const getByCode = async (code) => {
 const create = async (data) => {
   const error = validateProduct(data);
   if (error) {
-  return {
-    status: error.status,
-    data: error.data.message,
-  };
+    return {
+      status: error.status,
+      data: error.data.message,
+    };
   }
 
   await productsModel.create(data);
@@ -27,9 +27,6 @@ const create = async (data) => {
 };
 
 const update = async (code, data) => {
-  const product = await productsModel.getByCode(code);
-  if (!product) return { status: 'NOT_FOUND', data: { message: 'Product not found' } };
-
   const error = validateUpdateProduct(data);
   if (error) {
     return {
@@ -37,6 +34,9 @@ const update = async (code, data) => {
       data: error.data.message,
     };
   }
+
+  const product = await productsModel.getByCode(code);
+  if (!product) return { status: 'NOT_FOUND', data: { message: 'Product not found' } };
   
   const updatedProduct = await productsModel.update(code, data);
   return { status: 'SUCCESSFUL', data: updatedProduct };

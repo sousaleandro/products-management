@@ -6,30 +6,44 @@
   "author": "Leandro Sousa",
   "main": "src/server.js",
   "engines": {
-    "node": ">=16.0.0",
+    "node": ">=14.0.0",
     "npm": ">=7.0.0"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.js",
+      "tests/**/*.js"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
   },
   "scripts": {
     "start": "node .",
     "dev": "nodemon .",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint --no-error-on-unmatched-pattern ."
+    "test": "mocha --recursive tests --exit",
+    "coverage": "nyc mocha tests/**/*.test.js --exit",
+    "db:create": "docker-compose exec backend sh -c 'mysql -h db -u root -ppassword < ../scripts/01-migration.sql'",
+    "db:seed": "docker-compose exec backend sh -c 'mysql -h db -u root -ppassword NunesSports < /app/scripts/02-seed.sql'",
+    "db:reset": "npm run db:create && npm run db:seed",
+    "lint": "eslint ."
   },
   "dependencies": {
-    "express": "4.17.1",
-    "cors": "2.8.5",
-    "express-async-errors": "3.1.1",
     "camelize": "^1.0.1",
+    "cors": "2.8.5",
+    "express": "4.17.1",
+    "express-async-errors": "3.1.1",
     "joi": "17.6.0",
     "mysql2": "2.3.0"
   },
   "devDependencies": {
-    "nodemon": "2.0.12",
     "chai": "4.3.4",
     "chai-http": "4.3.0",
+    "eslint": "^8.56.0",
     "mocha": "10.2.0",
+    "nodemon": "2.0.12",
     "nyc": "15.1.0",
     "sinon": "11.1.1",
     "sinon-chai": "3.7.0"
   }
-  }
+}

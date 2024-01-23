@@ -3,13 +3,13 @@ import Joi from 'joi';
 const productSchema = Joi.object({
   name: Joi.string().required(),
   code: Joi.string().required(),
-  description: Joi.string().allow(''),
+  description: Joi.string().required().allow(''),
   price: Joi.number().required(),
 });
 
 const updateProductSchema = Joi.object({
   name: Joi.string().required(),
-  description: Joi.string().allow(''),
+  description: Joi.string().required().allow(''),
   price: Joi.number().required(),
 });
 

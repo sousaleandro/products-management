@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/', (_request, response) => {
-  response.send("Product Management UP");
+  response.send('Product Management UP');
 });
 
 app.use('/products', productRoutes);
