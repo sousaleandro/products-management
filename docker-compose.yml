@@ -26,8 +26,11 @@ services:
     container_name: frontend_container
     ports:
       - 3000:3000
-    depends_on:
-      - backend
+    # depends_on:
+    #   backend:
+    #     condition: service_healthy
+    volumes:
+      - ./frontend:/app/frontend
   db:
     container_name: db_products_management
     image: mysql:8.0.23
@@ -41,3 +44,5 @@ services:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       timeout: 10s
       retries: 5
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
