@@ -24,11 +24,10 @@ services:
   frontend:
     build: ./frontend
     container_name: frontend_container
+    depends_on:
+      - backend
     ports:
-      - 3000:3000
-    # depends_on:
-    #   backend:
-    #     condition: service_healthy
+      - 3002:3000
     volumes:
       - ./frontend:/app/frontend
   db:
