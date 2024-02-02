@@ -1,8 +1,8 @@
-import React, { useMemo, useState } from 'react'
-import Context from './Context'
+import React, { useMemo, useState } from 'react';
+import Context from './Context';
 // import { useNavigate } from 'react-router-dom'
-import productsFetch from '../services/productsFetch'
-import { type ProductType } from '../types/Product'
+import productsFetch from '../services/productsFetch';
+import { type ProductType } from '../types/Product';
 
 interface ProviderProps {
   children: React.ReactNode
@@ -10,35 +10,39 @@ interface ProviderProps {
 
 export interface ProviderValues {
   loading: boolean
+  products: ProductType[]
+  getProducts: () => Promise<void>
+  setLoading: (loading: boolean) => void
 }
 
-function Provider ({ children }: ProviderProps): JSX.Element {
+function Provider({ children }: ProviderProps): JSX.Element {
   // const navigate = useNavigate()
-  const [products, setProducts] = useState<ProductType[]>([])
-  const [loading, setLoading] = useState(false)
+  const [products, setProducts] = useState<ProductType[]>([]);
+  const [loading, setLoading] = useState(false);
 
-  const getProducts: any = async () => {
-    setLoading(true)
+  async function getProducts() {
+    setLoading(true);
     try {
-      const products = await productsFetch()
-      setProducts(products ?? [])
+      const products = await productsFetch();
+      setProducts(products ?? []);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
   const values = useMemo(() => ({
     loading,
     products,
-    getProducts
-  }), [])
+    getProducts,
+    setLoading,
+  }), [loading, products, getProducts, setLoading]);
 
   return (
-        <Context.Provider value={values}>
-            {children}
-        </Context.Provider>)
+    <Context.Provider value={values}>
+      {children}
+    </Context.Provider>);
 }
 
-export default Provider
+export default Provider;

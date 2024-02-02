@@ -1,4 +1,4 @@
-import { type ProductType } from '../types/Product'
+import { type ProductType } from '../types/Product';
 
 export default async function productsPatch (product: ProductType): Promise<void> {
   try {
@@ -8,8 +8,8 @@ export default async function productsPatch (product: ProductType): Promise<void
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(product)
-    })
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }

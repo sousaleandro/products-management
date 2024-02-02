@@ -11,8 +11,8 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_HOSTNAME: db
       MYSQL_PORT: 3306
-    volumes:
-      - ./backend:/app/backend
+    # volumes:
+    #   - ./backend:/app/backend
     depends_on:
       db:
         condition: service_healthy
@@ -28,8 +28,8 @@ services:
       - backend
     ports:
       - 3002:3000
-    volumes:
-      - ./frontend:/app/frontend
+    # volumes:
+    #   - ./frontend:/app/frontend
   db:
     container_name: db_products_management
     image: mysql:8.0.23

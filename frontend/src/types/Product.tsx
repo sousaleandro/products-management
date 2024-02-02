@@ -10,5 +10,5 @@ export interface CreateProductType {
   name: string
   code: string
   description: string
-  price: number
+  price: string
 }

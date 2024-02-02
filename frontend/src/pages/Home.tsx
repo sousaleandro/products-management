@@ -1,13 +1,25 @@
-import Header from '../components/Header'
-import Table from '../components/Table'
+import { useContext, useEffect } from 'react';
+import Header from '../components/Header';
+import Table from '../components/Table';
+import Context from '../context/Context';
+import Buttons from '../components/Buttons';
 
-function Home (): JSX.Element {
+function Home () {
+  const { getProducts, products, loading } = useContext(Context);
+
+  useEffect(() => {
+    if (!products.length) {
+      getProducts();
+    }
+  }, [products]);
+
   return (
     <div>
       <Header />
-      <Table />
+      <Buttons />
+      { loading ? <p>Loading...</p> : <Table /> }
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

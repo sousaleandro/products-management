@@ -1,4 +1,4 @@
-import { type CreateProductType } from '../types/Product'
+import { type CreateProductType } from '../types/Product';
 
 export default async function productsPost (product: CreateProductType): Promise<void> {
   try {
@@ -8,8 +8,8 @@ export default async function productsPost (product: CreateProductType): Promise
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(product)
-    })
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }
