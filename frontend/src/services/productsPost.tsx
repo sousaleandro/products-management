@@ -1,6 +1,6 @@
-import { type ProductType } from '../types/Product'
+import { type CreateProductType } from '../types/Product'
 
-export default async function productsPost (product: ProductType): Promise<void> {
+export default async function productsPost (product: CreateProductType): Promise<void> {
   try {
     await fetch('http://localhost:3001/products', {
       method: 'POST',
