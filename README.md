@@ -2,11 +2,11 @@
 
 ## Descrição
 
-Uma página web conectada a um banco de dados para gerenciamento de produtos da empresa Nunes Sports.
+  Uma página web conectada a um banco de dados para gerenciamento de produtos da empresa Nunes Sports.
 
 ## Objetivo
 
-Desenvolver um sistema para exibição, criação, edição e deleção de produtos para um cliente fictício, a empresa Nunes Sports.
+  Desenvolver um sistema para exibição, criação, edição e deleção de produtos para um cliente fictício, a empresa Nunes Sports.
   
 ## Tecnologias utilizadas no desenvolvimento
 ![Javascript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
@@ -33,32 +33,24 @@ Desenvolver um sistema para exibição, criação, edição e deleção de produ
   
   Após subir os containers, a aplicação estará disponível no endereço http://localhost:3000.
   
-## Instalando as dependências
-  ```
-  npm install
-  ```
-## Populando o banco de dados com informações de test
-  ```
-  npm run seed
-  ```
 ## Rodando os testes
   Para rodar os testes do backend é necessario acessar o terminal interativo do container do backend e então executar o comando de testes.
 ### Rodando os testes do backend
 
-Passo 1:
+  Passo 1:
   ```
   docker exec -it backend_container sh
   ```
-Passo 2:
+  Passo 2:
   ```
   npm run test
   ```
 ### Rodando os testes do frontend
-Passo 1:
+  Passo 1:
   ```
   docker exec -it frontend_container sh
   ```
-Passo 2:
+  Passo 2:
   ```
   npm run test
   ```
