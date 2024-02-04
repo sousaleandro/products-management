@@ -58,7 +58,7 @@ function Buttons() {
       <button onClick={() => setAddBtnState(!addBtnState)}>
         Adicionar novo produto
       </button>
-      <button>Listar todos os produtos</button>
+      <button onClick={getProducts} >Listar todos os produtos</button>
       {
         addBtnState &&
         <form onSubmit={handleSubmit}>
