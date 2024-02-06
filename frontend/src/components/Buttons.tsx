@@ -1,6 +1,7 @@
 import { ChangeEvent, useContext, useState } from 'react';
 import productsPost from '../services/productsPost';
 import Context from '../context/Context';
+import isValidPriceFormat from '../utils/productValidation';
 
 function Buttons() {
   const { getProducts } = useContext(Context);
@@ -22,7 +23,6 @@ function Buttons() {
     }
     try {
       productsPost(product);
-      // console.log(product);
       return alert('Produto salvo com sucesso');
     }
     catch (error) {
@@ -38,11 +38,6 @@ function Buttons() {
       });
       getProducts();
     }
-  };
-
-  const isValidPriceFormat = (price: string): boolean => {
-    const regex = /^\d+(\.\d{1,2})?$/;
-    return regex.test(price);
   };
 
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {

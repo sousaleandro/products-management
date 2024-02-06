@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import Context from '../context/Context';
-// import { CreateProductType } from '../types/Product';
 import productsDelete from '../services/productsDelete';
+import Row from './Row';
 
 function Table () {
   const { products, setLoading, getProducts } = useContext(Context);
@@ -34,10 +34,6 @@ function Table () {
     }
   }, [confirmDelete]);
 
-  // const handleUpdateBtn = (product: CreateProductType) => {
-  //   console.log(product);
-  // };
-
   return (
     <div>
       <h1>Table</h1>
@@ -53,23 +49,12 @@ function Table () {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
-            <tr key={product.id}>
-              <td>{product.name}</td>
-              <td>{product.code}</td>
-              <td>{product.description}</td>
-              <td>{product.price}</td>
-              <td>
-                <button onClick={() => {}}>
-                Botão 1
-                </button>
-              </td>
-              <td>
-                <button onClick={() => setConfirmDelete(product.code)}>
-                X
-                </button>
-              </td>
-            </tr>
+          {products.map(({id, name, code, description, price}) => (
+            <Row 
+              key={id}
+              product={{id, name, code, description, price}}
+              setConfirmDelete={setConfirmDelete}
+            />
           ))}
         </tbody>
       </table>
