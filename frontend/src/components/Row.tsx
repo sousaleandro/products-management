@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { ProductType } from '../types/Product';
 import productsPatch from '../services/productsPatch';
 import isValidPriceFormat from '../utils/productValidation';
+import Context from '../context/Context';
 
 function Row({ product, setConfirmDelete }: { product: ProductType; setConfirmDelete: React.Dispatch<React.SetStateAction<string | null>> }) {
+  const { getProducts } = useContext(Context);
   const [editable, setEditable] = useState(false);
   const [updateProduct, setUpdateProduct] = useState(product);
 
@@ -14,7 +16,7 @@ function Row({ product, setConfirmDelete }: { product: ProductType; setConfirmDe
     });
   };
 
-  const handleSaveBtn = () => {
+  const handleSaveBtn = async () => {
     if (updateProduct.name === '' || updateProduct.code === '' || updateProduct.description === '') {
       return alert('Preencha todos os campos');
     }
@@ -22,13 +24,13 @@ function Row({ product, setConfirmDelete }: { product: ProductType; setConfirmDe
       return alert('Formato de preço inválido. Use o formato 0.00');
     }
     try {
-      productsPatch(updateProduct);
+      await productsPatch(updateProduct);
+      setEditable(false);
+      await getProducts();
+      alert('Produto salvo com sucesso');
     }
     catch (error) {
       console.log(error);
-    }
-    finally {
-      setEditable(false);
     }
   };
 
