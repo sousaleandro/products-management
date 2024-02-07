@@ -7,6 +7,11 @@
 ## Objetivo
 
   Desenvolver um sistema para exibição, criação, edição e deleção de produtos para um cliente fictício, a empresa Nunes Sports.
+
+## Implementações Pendentes
+
+- [ ] Autenticação
+- [ ] Responsividade
   
 ## Tecnologias utilizadas no desenvolvimento
 ![Javascript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
@@ -54,3 +59,21 @@
   ```
   npm run test
   ```
+
+## Rotas da API
+  http://localhost:3001/
+
+### GET /products
+  Retorna todos os produtos cadastrados no banco de dados.
+
+### GET /products/:code
+  Retorna um produto específico do banco de dados.
+
+### POST /products
+  Cria um novo produto no banco de dados.
+
+### PATCH /products/:code
+  Atualiza um produto no banco de dados.
+
+### DELETE /products/:code
+  Deleta um produto no banco de dados.
