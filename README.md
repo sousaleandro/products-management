@@ -36,10 +36,11 @@
   ```
 ## Acessando a aplicação no navegador
   
-  Após subir os containers, a aplicação estará disponível no endereço http://localhost:3000.
+  Após subir os containers, a aplicação estará disponível no endereço http://localhost:3002.
   
 ## Rodando os testes
-  Para rodar os testes do backend é necessario acessar o terminal interativo do container do backend e então executar o comando de testes.
+  Para rodar os testes é necessario acessar o terminal interativo do container do backend ou do frontend e então executar o comando de testes.
+
 ### Rodando os testes do backend
 
   Passo 1:
