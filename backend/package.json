@@ -1,0 +1,46 @@
+{
+  "name": "back-end",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Products Management Back-end",
+  "author": "Leandro Sousa",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=7.0.0"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.js",
+      "tests/**/*.js"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+  },
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon .",
+    "test": "mocha --recursive tests --exit",
+    "coverage": "nyc mocha tests/**/*.test.js --exit",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "camelize": "^1.0.1",
+    "cors": "2.8.5",
+    "express": "4.17.1",
+    "express-async-errors": "3.1.1",
+    "joi": "17.6.0",
+    "mysql2": "2.3.0"
+  },
+  "devDependencies": {
+    "chai": "4.3.4",
+    "chai-http": "4.3.0",
+    "eslint": "^8.56.0",
+    "mocha": "10.2.0",
+    "nodemon": "2.0.12",
+    "nyc": "15.1.0",
+    "sinon": "11.1.1",
+    "sinon-chai": "3.7.0"
+  }
+}

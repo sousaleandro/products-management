@@ -1,0 +1,47 @@
+version: '3'
+services:
+  backend:
+    build: ./backend
+    container_name: backend_container
+    restart: always
+    ports:
+      - 3001:3001
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_HOSTNAME: db
+      MYSQL_PORT: 3306
+    # volumes:
+    #   - ./backend:/app/backend
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+  frontend:
+    build: ./frontend
+    container_name: frontend_container
+    depends_on:
+      - backend
+    ports:
+      - 3002:3000
+    # volumes:
+    #   - ./frontend:/app/frontend
+  db:
+    container_name: db_products_management
+    image: mysql:8.0.23
+    platform: linux/x86_64
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
