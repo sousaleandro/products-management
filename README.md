@@ -11,6 +11,7 @@
 ## Implementações Pendentes
 
 - [ ] Autenticação
+- [ ] Cobertura de testes pelo menos 80% para o front-end
 - [ ] Responsividade
   
 ## Tecnologias utilizadas no desenvolvimento
