@@ -2,22 +2,26 @@ import { useContext, useEffect } from 'react';
 import Header from '../components/Header';
 import Table from '../components/Table';
 import Context from '../context/Context';
-import Buttons from '../components/Buttons';
+import AddProduct from '../components/AddProduct';
 
 function Home () {
-  const { getProducts, products, loading } = useContext(Context);
+  const { getProducts, loading } = useContext(Context);
 
   useEffect(() => {
-    if (!products.length) {
-      getProducts();
-    }
-  }, [products]);
+    getProducts();
+  }, []);
 
   return (
     <>
       <Header />
-      <div>
-        <Buttons />
+      <div
+        className='initial_animation'
+      >
+        <AddProduct />
+        <button 
+          className='all_products_btn'
+          onClick={getProducts} >Listar todos os produtos
+        </button>
         { loading ? <p>Loading...</p> : <Table /> }
       </div>
     </>

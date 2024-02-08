@@ -2,8 +2,10 @@ import { ChangeEvent, useContext, useState } from 'react';
 import productsPost from '../../services/productsPost';
 import Context from '../../context/Context';
 import isValidPriceFormat from '../../utils/productValidation';
+import { MdSave } from 'react-icons/md';
+import './style.css';
 
-function Buttons() {
+function AddProduct() {
   const { getProducts } = useContext(Context);
   const [product, setProduct] = useState({
     name: '',
@@ -47,17 +49,18 @@ function Buttons() {
 
   return (
     <div>
-      <h3>Adicionar Novo Produto</h3>
-      <form onSubmit={handleSubmit}>
+      <h3>Novo Produto</h3>
+      <form className='flex_center' onSubmit={handleSubmit}>
         <input type="text" data-testid='name-input' name='name' placeholder="Nome" onChange={handleChange} maxLength={255}/>
         <input type="text" data-testid='code-input' name='code' placeholder="Código" onChange={handleChange} maxLength={50}/>
         <input type="text" data-testid='description-input' name='description' placeholder="Descrição" onChange={handleChange} maxLength={500}/>
         <input type="text" data-testid='price-input' name='price' placeholder="Preço" onChange={handleChange}/>
         <button
+          className='save-btn'
           data-testid='save-btn'
           type="submit"
         >
-            Salvar
+          <MdSave size={23} color='gray' />
         </button>
       </form>
 
@@ -65,4 +68,4 @@ function Buttons() {
   );
 }
 
-export default Buttons;
+export default AddProduct;

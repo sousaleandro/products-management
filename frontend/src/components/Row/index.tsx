@@ -74,10 +74,13 @@ function Row({ product, setConfirmDelete }: { product: ProductType; setConfirmDe
           />
         </td>
         <td>
-          <button onClick={() => setEditable(false)}>
+          <button
+            title='Cancelar Edição'
+            onClick={() => setEditable(false)}>
             <MdCancel size={23} color='gray'/>
           </button>
           <button
+            title='Salvar Produto'
             disabled={product === updateProduct}
             onClick={() => handleSaveBtn()}
           >
@@ -95,12 +98,13 @@ function Row({ product, setConfirmDelete }: { product: ProductType; setConfirmDe
       <td>{product.description}</td>
       <td>{new Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(Number(product.price))}</td>
       <td>
-        <button onClick={() => setEditable(true)}>
+        <button 
+          title='Editar Produto'
+          onClick={() => setEditable(true)}>
           <MdEdit size={23} color='gray'/>
         </button>
-      </td>
-      <td>
         <button 
+          title='Deletar Produto'
           data-testid={`delete-btn-${product.id}`}
           onClick={() => setConfirmDelete(product.code)}>
           <MdDelete size={23} color='gray'/>

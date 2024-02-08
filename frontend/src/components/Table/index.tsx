@@ -36,31 +36,31 @@ function Table () {
   }, [confirmDelete]);
 
   return (
-    <div className='table-content'>
+    <>
       <h2>Produtos</h2>
-      <button onClick={getProducts} >Listar todos os produtos</button>
-      <table>
-        <thead>
-          <tr>
-            <th>Produto</th>
-            <th>Código</th>
-            <th>Descrição</th>
-            <th>Preço</th>
-            <th>Atualizar</th>
-            <th>Excluir</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map(({id, name, code, description, price}) => (
-            <Row 
-              key={id}
-              product={{id, name, code, description, price}}
-              setConfirmDelete={setConfirmDelete}
-            />
-          ))}
-        </tbody>
-      </table>
-    </div>
+      <div className='table-content'>
+        <table>
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Código</th>
+              <th>Descrição</th>
+              <th>Preço</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map(({id, name, code, description, price}) => (
+              <Row 
+                key={id}
+                product={{id, name, code, description, price}}
+                setConfirmDelete={setConfirmDelete}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 }
 
