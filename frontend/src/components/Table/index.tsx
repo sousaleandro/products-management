@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
-import Context from '../context/Context';
-import productsDelete from '../services/productsDelete';
-import Row from './Row';
+import Context from '../../context/Context';
+import productsDelete from '../../services/productsDelete';
+import Row from '../Row';
+import './style.css';
 
 function Table () {
   const { products, setLoading, getProducts } = useContext(Context);
@@ -35,30 +36,31 @@ function Table () {
   }, [confirmDelete]);
 
   return (
-    <div>
-      <h1>Table</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Produto</th>
-            <th>Código</th>
-            <th>Descrição</th>
-            <th>Preço</th>
-            <th>Atualizar</th>
-            <th>Excluir</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map(({id, name, code, description, price}) => (
-            <Row 
-              key={id}
-              product={{id, name, code, description, price}}
-              setConfirmDelete={setConfirmDelete}
-            />
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <>
+      <h2>Produtos</h2>
+      <div className='table-content'>
+        <table>
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Código</th>
+              <th>Descrição</th>
+              <th>Preço</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map(({id, name, code, description, price}) => (
+              <Row 
+                key={id}
+                product={{id, name, code, description, price}}
+                setConfirmDelete={setConfirmDelete}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 }
 

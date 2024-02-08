@@ -1,7 +1,7 @@
 import connection from './connection.js';
 
 const getAll = async () => {
-  const [products] = await connection.execute('SELECT * FROM products');
+  const [products] = await connection.execute('SELECT * FROM products LIMIT 1000');
   return products;
 };
 

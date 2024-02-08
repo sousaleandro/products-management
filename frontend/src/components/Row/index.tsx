@@ -1,8 +1,9 @@
 import { useContext, useState } from 'react';
-import { ProductType } from '../types/Product';
-import productsPatch from '../services/productsPatch';
-import isValidPriceFormat from '../utils/productValidation';
-import Context from '../context/Context';
+import { ProductType } from '../../types/Product';
+import productsPatch from '../../services/productsPatch';
+import isValidPriceFormat from '../../utils/productValidation';
+import Context from '../../context/Context';
+import { MdDelete, MdEdit, MdSave, MdCancel } from 'react-icons/md';
 
 function Row({ product, setConfirmDelete }: { product: ProductType; setConfirmDelete: React.Dispatch<React.SetStateAction<string | null>> }) {
   const { getProducts } = useContext(Context);
@@ -36,7 +37,7 @@ function Row({ product, setConfirmDelete }: { product: ProductType; setConfirmDe
 
   if (editable) {
     return (
-      <tr>
+      <tr data-testid={`product-editable-${product.id}`} >
         <td>
           <input
             type="text"
@@ -68,21 +69,22 @@ function Row({ product, setConfirmDelete }: { product: ProductType; setConfirmDe
           <input
             type="text"
             name="price"
-            value={updateProduct.price}
+            value={(updateProduct.price)}
             onChange={handleChange}
           />
         </td>
         <td>
-          <button onClick={() => setEditable(false)}>
-          Cancelar
-          </button>
-        </td>
-        <td>
           <button
+            title='Cancelar Edição'
+            onClick={() => setEditable(false)}>
+            <MdCancel size={23} color='gray'/>
+          </button>
+          <button
+            title='Salvar Produto'
             disabled={product === updateProduct}
             onClick={() => handleSaveBtn()}
           >
-          Salvar
+            <MdSave size={23} color='gray'/>
           </button>
         </td>
       </tr>
@@ -90,19 +92,22 @@ function Row({ product, setConfirmDelete }: { product: ProductType; setConfirmDe
   }
 
   return (
-    <tr>
+    <tr data-testid={`product-${product.id}`}>
       <td>{product.name}</td>
       <td>{product.code}</td>
       <td>{product.description}</td>
-      <td>{product.price}</td>
+      <td>{new Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(Number(product.price))}</td>
       <td>
-        <button onClick={() => setEditable(true)}>
-          Editar
+        <button 
+          title='Editar Produto'
+          onClick={() => setEditable(true)}>
+          <MdEdit size={23} color='gray'/>
         </button>
-      </td>
-      <td>
-        <button onClick={() => setConfirmDelete(product.code)}>
-          X
+        <button 
+          title='Deletar Produto'
+          data-testid={`delete-btn-${product.id}`}
+          onClick={() => setConfirmDelete(product.code)}>
+          <MdDelete size={23} color='gray'/>
         </button>
       </td>
     </tr>

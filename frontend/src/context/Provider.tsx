@@ -37,7 +37,7 @@ function Provider({ children }: ProviderProps): JSX.Element {
     products,
     getProducts,
     setLoading,
-  }), [loading, products, getProducts, setLoading]);
+  }), [loading, products, setLoading]);
 
   return (
     <Context.Provider value={values}>
