@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
-import Context from '../context/Context';
-import productsDelete from '../services/productsDelete';
-import Row from './Row';
+import Context from '../../context/Context';
+import productsDelete from '../../services/productsDelete';
+import Row from '../Row';
+import './style.css';
 
 function Table () {
   const { products, setLoading, getProducts } = useContext(Context);
@@ -35,8 +36,9 @@ function Table () {
   }, [confirmDelete]);
 
   return (
-    <div>
-      <h1>Table</h1>
+    <div className='table-content'>
+      <h2>Produtos</h2>
+      <button onClick={getProducts} >Listar todos os produtos</button>
       <table>
         <thead>
           <tr>

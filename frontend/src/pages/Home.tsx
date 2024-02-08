@@ -14,11 +14,13 @@ function Home () {
   }, [products]);
 
   return (
-    <div>
+    <>
       <Header />
-      <Buttons />
-      { loading ? <p>Loading...</p> : <Table /> }
-    </div>
+      <div>
+        <Buttons />
+        { loading ? <p>Loading...</p> : <Table /> }
+      </div>
+    </>
   );
 }
 
