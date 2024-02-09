@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { ProductType } from '../../types/Product';
-import productsPatch from '../../services/productsPatch';
+import { productsPatch } from '../../services/productRequests';
 import isValidPriceFormat from '../../utils/productValidation';
 import Context from '../../context/Context';
 import { MdDelete, MdEdit, MdSave, MdCancel } from 'react-icons/md';

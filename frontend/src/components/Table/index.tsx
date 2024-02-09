@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import Context from '../../context/Context';
-import productsDelete from '../../services/productsDelete';
+import { productsDelete } from '../../services/productRequests';
 import Row from '../Row';
 import './style.css';
 

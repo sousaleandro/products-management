@@ -1,5 +1,5 @@
 import { ChangeEvent, useContext, useState } from 'react';
-import productsPost from '../../services/productsPost';
+import { productsPost } from '../../services/productRequests';
 import Context from '../../context/Context';
 import isValidPriceFormat from '../../utils/productValidation';
 import { MdSave } from 'react-icons/md';
@@ -24,7 +24,7 @@ function AddProduct() {
     }
     try {
       await productsPost(product);
-      // return alert('Produto salvo com sucesso');
+      return alert('Produto salvo com sucesso');
     }
     catch (error) {
       console.log(error);
