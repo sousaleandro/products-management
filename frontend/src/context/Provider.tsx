@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import Context from './Context';
-// import { useNavigate } from 'react-router-dom'
-import productsFetch from '../services/productsFetch';
+import { productsFetch } from '../services/productRequests';
 import { type ProductType } from '../types/Product';
 
 interface ProviderProps {
@@ -16,7 +15,6 @@ export interface ProviderValues {
 }
 
 function Provider({ children }: ProviderProps): JSX.Element {
-  // const navigate = useNavigate()
   const [products, setProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState(false);
 
